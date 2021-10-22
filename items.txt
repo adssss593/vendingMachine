@@ -1,0 +1,4 @@
+KitKat::0.99::8
+Maltesers::0.88::10
+Twirl::1.00::0
+Mars bar::0.50::25
