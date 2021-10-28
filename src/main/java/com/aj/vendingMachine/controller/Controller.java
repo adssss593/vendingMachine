@@ -1,22 +1,19 @@
-package com.aj.vendingmachine.controller;
+package com.aj.vendingMachine.controller;
 
-import com.aj.vendingmachine.Dao.VendingMachineException;
-import com.aj.vendingmachine.ServiceLayer.InsufficientFundsException;
-import com.aj.vendingmachine.ServiceLayer.NoItemInventoryException;
-import com.aj.vendingmachine.ServiceLayer.ServiceLayer;
-import com.aj.vendingmachine.UI.View;
-import com.aj.vendingmachine.dto.Change;
-import com.aj.vendingmachine.dto.Coins;
-import com.aj.vendingmachine.dto.Item;
+import com.aj.vendingMachine.dao.VendingMachineException;
+import com.aj.vendingMachine.serviceLayer.InsufficientFundsException;
+import com.aj.vendingMachine.serviceLayer.ServiceLayer;
+import com.aj.vendingMachine.UI.View;
+import com.aj.vendingMachine.serviceLayer.Change;
+import com.aj.vendingMachine.dto.Coins;
+import com.aj.vendingMachine.dto.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class Controller {
@@ -40,17 +37,12 @@ public class Controller {
             System.exit(0);
         }
 
-
-        Stream<Item> currentItems = serviceLayer.getCurrentItems();
-        Stream<Item> currentItems2 = serviceLayer.getCurrentItems();
-        Stream<Item> currentItems3 = serviceLayer.getCurrentItems();
-
-        view.showItems(currentItems);
+        view.showItems(serviceLayer.getCurrentItems());
 
         getUserCoins();
 
-        int userChoice = view.getUserItem(currentItems2);
-        List<Item> items = currentItems3.collect(Collectors.toList());
+        int userChoice = view.getUserItem(serviceLayer.getCurrentItems());
+        List<Item> items = serviceLayer.getCurrentItems().collect(Collectors.toList());
         Item userItem = items.get(userChoice - 1);
         BigDecimal remainingAmount = new BigDecimal("2");
         try {

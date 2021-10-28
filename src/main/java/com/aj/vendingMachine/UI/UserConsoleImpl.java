@@ -1,4 +1,4 @@
-package com.aj.vendingmachine.UI;
+package com.aj.vendingMachine.UI;
 
 import org.springframework.stereotype.Component;
 
@@ -7,7 +7,7 @@ import java.util.Scanner;
 @Component
 public class UserConsoleImpl implements UserIO{
 
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void print(String statement) {

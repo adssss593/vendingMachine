@@ -1,10 +1,9 @@
-package com.aj.vendingmachine.ServiceLayer;
+package com.aj.vendingMachine.serviceLayer;
 
-import com.aj.vendingmachine.Dao.AuditDao;
-import com.aj.vendingmachine.Dao.FileDao;
-import com.aj.vendingmachine.Dao.FileDaoImpl;
-import com.aj.vendingmachine.Dao.VendingMachineException;
-import com.aj.vendingmachine.dto.Item;
+import com.aj.vendingMachine.dao.AuditDao;
+import com.aj.vendingMachine.dao.FileDao;
+import com.aj.vendingMachine.dao.VendingMachineException;
+import com.aj.vendingMachine.dto.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

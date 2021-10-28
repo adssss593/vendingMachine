@@ -1,4 +1,4 @@
-package com.aj.vendingmachine.UI;
+package com.aj.vendingMachine.UI;
 
 public interface UserIO {
 

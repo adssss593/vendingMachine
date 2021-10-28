@@ -1,10 +1,10 @@
-package com.aj.vendingmachine.ServiceLayer;
+package com.aj.vendingMachine.serviceLayer;
 
-import com.aj.vendingmachine.Dao.AuditDao;
-import com.aj.vendingmachine.Dao.FileDao;
-import com.aj.vendingmachine.Dao.FileDaoImplStub;
-import com.aj.vendingmachine.Dao.auditDaoImplStub;
-import com.aj.vendingmachine.dto.Item;
+import com.aj.vendingMachine.dao.AuditDao;
+import com.aj.vendingMachine.dao.FileDao;
+import com.aj.vendingMachine.dao.FileDaoImplStub;
+import com.aj.vendingMachine.dao.AuditDaoImplStub;
+import com.aj.vendingMachine.dto.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ServiceLayerImplTest {
 
-    AuditDao stubAuditDao = new auditDaoImplStub();
+    AuditDao stubAuditDao = new AuditDaoImplStub();
     FileDao stubFileDao = new FileDaoImplStub();
 
     ServiceLayer testServiceLayer = new ServiceLayerImpl(stubAuditDao,stubFileDao);

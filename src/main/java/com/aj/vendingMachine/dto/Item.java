@@ -1,11 +1,11 @@
-package com.aj.vendingmachine.dto;
+package com.aj.vendingMachine.dto;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Item {
-    private String name;
-    private BigDecimal price;
+    private final String name;
+    private final BigDecimal price;
     private int stock;
 
     public Item(String name, BigDecimal price, int stock) {
@@ -18,16 +18,8 @@ public class Item {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public int getStock() {

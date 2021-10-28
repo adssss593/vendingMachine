@@ -1,13 +1,10 @@
-package com.aj.vendingmachine.Dao;
+package com.aj.vendingMachine.dao;
 
-import com.aj.vendingmachine.dto.Coins;
-import com.aj.vendingmachine.dto.Item;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.aj.vendingMachine.dto.Item;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,9 +15,9 @@ import static java.lang.String.valueOf;
 @Component
 public class FileDaoImpl implements FileDao{
 
-    Map<String,Item> items = new HashMap<>();
+    private Map<String,Item> items = new HashMap<>();
     private String DELIMITER = "::";
-    private String FILE = "item.txt";
+    private String FILE = "items.txt";
 
     public FileDaoImpl() {
     }
@@ -30,15 +27,15 @@ public class FileDaoImpl implements FileDao{
     }
 
     @Override
-    public void buyItem(Item item) throws VendingMachineException{
+    public void buyItem(Item item){
         int stock = item.getStock();
         int newStock = stock - 1 ;
         item.setStock(newStock);
         items.put(item.getName(),item);
         try{
             writeData();
-        } catch (Exception e) {
-            System.out.println("error");
+        } catch (VendingMachineException e) {
+            e.getMessage();
         }
     }
 
@@ -47,16 +44,17 @@ public class FileDaoImpl implements FileDao{
         return items.values().stream().filter((i) -> i.getStock() > 0);
     }
 
-    public Item unmarshall(String line) {
+    private Item unmarshall(String line) {
         String[] elements = line.split(DELIMITER,-2);
         Item item = new Item(elements[0],new BigDecimal(elements[1]),Integer.parseInt(elements[2]));
         return item;
     }
 
-    public String marshall(Item item) {
+    private String marshall(Item item) {
         return item.getName() + DELIMITER + item.getPrice().toString() + DELIMITER + valueOf(item.getStock());
     }
 
+    @Override
     public void readData() throws VendingMachineException{
         Scanner scanner;
         try {
@@ -81,10 +79,14 @@ public class FileDaoImpl implements FileDao{
         }
 
         items.values().stream()
-                .forEach((i) -> {
+                .forEach(i -> {
             myWriter.println(marshall(i));
-            myWriter.flush();
         });
+        myWriter.flush();
+    }
+
+    public Map<String, Item> getItems() {
+        return items;
     }
 }
 

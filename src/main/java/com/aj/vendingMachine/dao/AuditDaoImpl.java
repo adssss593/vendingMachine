@@ -1,4 +1,4 @@
-package com.aj.vendingmachine.Dao;
+package com.aj.vendingMachine.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -15,6 +14,10 @@ import java.time.format.FormatStyle;
 public class AuditDaoImpl implements AuditDao{
 
     private static final String AUDIT_FILE = "auditFile.txt";
+
+    @Autowired
+    public AuditDaoImpl() {
+    }
 
     @Override
     public void writeAudit(String itemName) throws VendingMachineException{

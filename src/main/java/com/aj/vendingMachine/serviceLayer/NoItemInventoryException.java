@@ -1,4 +1,4 @@
-package com.aj.vendingmachine.ServiceLayer;
+package com.aj.vendingMachine.serviceLayer;
 
 public class NoItemInventoryException extends Exception{
 

@@ -1,21 +1,17 @@
-package com.aj.vendingmachine.Dao;
+package com.aj.vendingMachine.dao;
 
-import com.aj.vendingmachine.dto.Item;
+import com.aj.vendingMachine.dto.Item;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class FileDaoImplStub implements FileDao{
 
     @Override
-    public void buyItem(Item item) throws VendingMachineException {
+    public void buyItem(Item item){
     }
 
     @Override
     public void readData() throws VendingMachineException {
-
     }
 
     @Override

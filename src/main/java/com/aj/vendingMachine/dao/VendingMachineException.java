@@ -1,4 +1,4 @@
-package com.aj.vendingmachine.Dao;
+package com.aj.vendingMachine.dao;
 
 public class VendingMachineException extends Exception{
 

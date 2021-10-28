@@ -1,7 +1,7 @@
-package com.aj.vendingmachine.UI;
+package com.aj.vendingMachine.UI;
 
-import com.aj.vendingmachine.dto.Coins;
-import com.aj.vendingmachine.dto.Item;
+import com.aj.vendingMachine.dto.Coins;
+import com.aj.vendingMachine.dto.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class View {
 
     public void showItems(Stream<Item> items) {
         io.print("Here are our items");
-        items.forEach((i) -> {
+        items.forEach(i -> {
             io.print(i.getName() + ": £" + i.getPrice());
         });
         io.getUserString("press enter to continue");
@@ -46,10 +46,8 @@ public class View {
 
     public int getUserItem(Stream<Item> items) {
 
-        Collection<Integer> results = new ArrayList<>();
-
         AtomicInteger count = new AtomicInteger(1);
-        items.forEach((i) -> {
+        items.forEach(i -> {
             io.print(count +". " + i.getName() + ": £" + i.getPrice());
             count.getAndIncrement();
         });

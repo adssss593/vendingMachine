@@ -1,6 +1,6 @@
-package com.aj.vendingmachine.Dao;
+package com.aj.vendingMachine.dao;
 
-public class auditDaoImplStub implements AuditDao{
+public class AuditDaoImplStub implements AuditDao{
 
     @Override
     public void writeAudit(String itemName) throws VendingMachineException {
