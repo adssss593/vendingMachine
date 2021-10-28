@@ -10,17 +10,24 @@ import com.aj.vendingmachine.UI.UserConsoleImpl;
 import com.aj.vendingmachine.UI.UserIO;
 import com.aj.vendingmachine.UI.View;
 import com.aj.vendingmachine.controller.Controller;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
 public class App {
     public static void main(String[] args) {
-        AuditDao auditDao = new AuditDaoImpl();
-        FileDao fileDao = new FileDaoImpl("items.txt");
-        UserIO io = new UserConsoleImpl();
-        View view = new View(io);
+//        AuditDao auditDao = new AuditDaoImpl();
+//        FileDao fileDao = new FileDaoImpl("items.txt");
+//        UserIO io = new UserConsoleImpl();
+//        View view = new View(io);
+//
+//        ServiceLayer serviceLayer = new ServiceLayerImpl(auditDao,fileDao);
+//        Controller controller = new Controller(serviceLayer,view);
 
-        ServiceLayer serviceLayer = new ServiceLayerImpl(auditDao,fileDao);
-        Controller controller = new Controller(serviceLayer,view);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        applicationContext.scan("com.aj.vendingmachine");
+        applicationContext.refresh();
 
+        Controller controller = applicationContext.getBean("controller", Controller.class);
         controller.run();
     }
 

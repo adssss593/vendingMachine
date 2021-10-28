@@ -8,6 +8,8 @@ import com.aj.vendingmachine.UI.View;
 import com.aj.vendingmachine.dto.Change;
 import com.aj.vendingmachine.dto.Coins;
 import com.aj.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,23 +18,28 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Component
 public class Controller {
 
     private ServiceLayer serviceLayer;
     private View view;
     private  BigDecimal totalMoney = new BigDecimal("0.00");
 
+    @Autowired
     public Controller(ServiceLayer serviceLayer, View view) {
         this.serviceLayer = serviceLayer;
         this.view = view;
     }
 
-    public void run(){
+    public void run() {
+
         try {
             serviceLayer.readData();
         } catch (VendingMachineException e) {
             view.displayErrorMessage(e.getMessage());
+            System.exit(0);
         }
+
 
         Stream<Item> currentItems = serviceLayer.getCurrentItems();
         Stream<Item> currentItems2 = serviceLayer.getCurrentItems();
@@ -59,7 +66,6 @@ public class Controller {
             Map<Coins, Integer> coinsDue = Change.calculateChange(remainingAmount);
             view.showChange(coinsDue);
         }
-
     }
 
     public void getUserCoins() {

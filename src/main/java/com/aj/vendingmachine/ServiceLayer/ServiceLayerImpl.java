@@ -5,15 +5,19 @@ import com.aj.vendingmachine.Dao.FileDao;
 import com.aj.vendingmachine.Dao.FileDaoImpl;
 import com.aj.vendingmachine.Dao.VendingMachineException;
 import com.aj.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;
 
+@Component
 public class ServiceLayerImpl implements ServiceLayer{
 
     private AuditDao auditDao;
     private FileDao fileDao;
 
+    @Autowired
     public ServiceLayerImpl(AuditDao auditDao, FileDao fileDao) {
         this.auditDao = auditDao;
         this.fileDao = fileDao;

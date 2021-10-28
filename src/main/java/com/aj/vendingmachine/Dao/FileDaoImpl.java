@@ -2,6 +2,8 @@ package com.aj.vendingmachine.Dao;
 
 import com.aj.vendingmachine.dto.Coins;
 import com.aj.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -13,11 +15,15 @@ import java.util.stream.Stream;
 
 import static java.lang.String.valueOf;
 
+@Component
 public class FileDaoImpl implements FileDao{
 
     Map<String,Item> items = new HashMap<>();
     private String DELIMITER = "::";
-    private String FILE;
+    private String FILE = "item.txt";
+
+    public FileDaoImpl() {
+    }
 
     public FileDaoImpl(String FILE) {
         this.FILE = FILE;

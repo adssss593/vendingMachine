@@ -2,6 +2,8 @@ package com.aj.vendingmachine.UI;
 
 import com.aj.vendingmachine.dto.Coins;
 import com.aj.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,10 +12,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
+@Component
 public class View {
 
     private UserIO io;
 
+    @Autowired
     public View(UserIO io) {
         this.io = io;
     }
