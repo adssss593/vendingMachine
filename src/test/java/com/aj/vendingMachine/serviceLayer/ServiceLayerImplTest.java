@@ -4,6 +4,7 @@ import com.aj.vendingMachine.dao.AuditDao;
 import com.aj.vendingMachine.dao.FileDao;
 import com.aj.vendingMachine.dao.FileDaoImplStub;
 import com.aj.vendingMachine.dao.AuditDaoImplStub;
+import com.aj.vendingMachine.dto.Coins;
 import com.aj.vendingMachine.dto.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,20 +33,32 @@ class ServiceLayerImplTest {
     void buyItem() throws Exception {
         try {
             testServiceLayer.buyItem(testItem,new BigDecimal("999"));
-            fail();
+            fail("not enough funds to buy item");
 
-        } catch (InsufficientFundsException e) {
+        } catch (InsufficientFundsException ignore) {
         }
         try {
             testServiceLayer.buyItem(testItem,new BigDecimal("1000"));
         } catch (InsufficientFundsException e) {
-            fail();
+            fail("enough funds");
         }
         try {
             BigDecimal result = testServiceLayer.buyItem(testItem,new BigDecimal("1001"));
             assertEquals(result,new BigDecimal("1"));
         } catch (InsufficientFundsException e) {
-            fail();
+            fail("enough funds");
         }
+    }
+
+    @Test
+    void calculateChange() {
+        Map<Coins, Integer> coins = testServiceLayer.calculateChange(new BigDecimal("3.88"));
+
+        Map<Coins, Integer> correctCoins = new HashMap<>();
+        for (Coins coin : Coins.values()) {
+            correctCoins.put(coin,1);
+        }
+        assertEquals(coins,correctCoins,"test case should contain one of each coin");
+
     }
 }

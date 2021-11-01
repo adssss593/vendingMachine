@@ -1,9 +1,11 @@
 package com.aj.vendingMachine.serviceLayer;
 
 import com.aj.vendingMachine.dao.VendingMachineException;
+import com.aj.vendingMachine.dto.Coins;
 import com.aj.vendingMachine.dto.Item;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public interface ServiceLayer {
@@ -13,4 +15,6 @@ public interface ServiceLayer {
     Stream<Item> getCurrentItems();
 
     BigDecimal buyItem(Item item, BigDecimal money) throws VendingMachineException, InsufficientFundsException;
+
+    Map<Coins, Integer> calculateChange(BigDecimal remainingAmount);
 }

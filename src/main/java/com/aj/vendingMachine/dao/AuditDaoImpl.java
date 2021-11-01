@@ -13,10 +13,13 @@ import java.time.format.FormatStyle;
 @Component
 public class AuditDaoImpl implements AuditDao{
 
-    private static final String AUDIT_FILE = "auditFile.txt";
+    private String AUDIT_FILE = "auditFile.txt";
 
-    @Autowired
     public AuditDaoImpl() {
+    }
+
+    public AuditDaoImpl(String AUDIT_FILE) {
+        this.AUDIT_FILE = AUDIT_FILE;
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.aj.vendingMachine.dao.VendingMachineException;
 import com.aj.vendingMachine.serviceLayer.InsufficientFundsException;
 import com.aj.vendingMachine.serviceLayer.ServiceLayer;
 import com.aj.vendingMachine.UI.View;
-import com.aj.vendingMachine.serviceLayer.Change;
 import com.aj.vendingMachine.dto.Coins;
 import com.aj.vendingMachine.dto.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class Controller {
         BigDecimal remainingAmount = new BigDecimal("2");
         try {
             remainingAmount = new BigDecimal(serviceLayer.buyItem(userItem,totalMoney).toString());
-            Map<Coins, Integer> coinsDue = Change.calculateChange(remainingAmount);
+            Map<Coins, Integer> coinsDue = serviceLayer.calculateChange(remainingAmount);
             view.showChange(coinsDue);
         } catch (VendingMachineException e) {
             view.displayErrorMessage(e.getMessage());
@@ -55,7 +54,7 @@ public class Controller {
             view.displayErrorMessage(e.getMessage());
             view.displayTotalMoney(totalMoney);
             view.displayErrorMessage("you don't have enough coins");
-            Map<Coins, Integer> coinsDue = Change.calculateChange(remainingAmount);
+            Map<Coins, Integer> coinsDue = serviceLayer.calculateChange(remainingAmount);
             view.showChange(coinsDue);
         }
     }
